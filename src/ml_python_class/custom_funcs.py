@@ -1,10 +1,10 @@
-""" 
-Module to provide a simple function to gather all loaded
-modules in a notebook and display the version information of 
-the modules.
+#!/usr/bin/env python
+"""
+Custom code and functions that are useful across more than one notebook for the class.
 """
 import types
 import inspect
+
 
 def version_information():
     """Dynamically gather loaded modules form the current running
@@ -25,7 +25,7 @@ def version_information():
     # now display the imported modules
     keys = list(module_dict.keys())
     keys.sort()
-    print('%+15s   %s' % ('Module', 'Versions'))
-    print('-' * 15 + '   ' + '-' * 60)
+    print('%+20s   %s' % ('Module', 'Versions'))
+    print('-' * 20 + '   ' + '-' * 60)
     for key in keys:
-        print('%+14s:   %s' % (key, module_dict[key])) 
+        print('%+19s:   %s' % (key, module_dict[key])) 
