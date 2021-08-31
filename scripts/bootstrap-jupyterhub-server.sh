@@ -66,6 +66,8 @@ systemctl start jupyterhub.service
 systemctl enable jupyterhub.service
 
 # set up lab extensions
+source /opt/anaconda3/bin/activate
+conda init
 conda activate jupyterhub
 /opt/anaconda3/envs/jupyterhub/bin/jupyter labextension install --no-build @jupyterlab/toc
 /opt/anaconda3/envs/jupyterhub/bin/jupyter labextension install --no-build @aquirdturtle/collapsible_headings
