@@ -10,7 +10,7 @@
 
 # create conda environment for JupyterHub with JupyterLab installation/run environment
 #/opt/anaconda3/bin/conda create --name jupyterhub jupyterhub jupyterlab ipywidgets nodejs
-/opt/anaconda3/bin/conda create --yes --name jupyterhub -c conda-forge jupyterhub jupyterlab ipywidgets ipympl nodejs=10
+/opt/anaconda3/bin/conda create --yes --name jupyterhub -c conda-forge jupyterhub jupyterlab ipywidgets ipympl nodejs
 
 # create JupyterHub config file
 mkdir -p /opt/anaconda3/envs/jupyterhub/etc/jupyterhub
@@ -18,7 +18,7 @@ cd /opt/anaconda3/envs/jupyterhub/etc/jupyterhub
 /opt/anaconda3/envs/jupyterhub/bin/jupyterhub --generate-config
 
 # set default ocnfig to use JupyterLab
-sed -i "s|#c.Spawner.default_url = ''|c.Spawner.default_url = '/lab'|" jupyterhub_config.py
+sed -i "s|# c.Spawner.default_url = ''|c.Spawner.default_url = '/lab'|" jupyterhub_config.py
 
 # use systemd to start JupyterHub on boot
 mkdir -p /opt/anaconda3/envs/jupyterhub/etc/systemd
@@ -43,12 +43,15 @@ ln -s /opt/anaconda3/envs/jupyterhub/etc/systemd/jupyterhub.service /etc/systemd
 
 # add extra (system-wide) kernels for JupyterLab
 # Anaconda3 (full scientific python stack)
-/opt/anaconda3/bin/conda create --yes --name python3-datasci anaconda numpy scipy matplotlib pandas seaborn keras tensorflow statsmodels tensorflow-gpu pytorch torchvision cudatoolkit=10.1 ipykernel ipympl nodejs=10
+/opt/anaconda3/bin/conda update --yes anaconda
+/opt/anaconda3/bin/conda update --yes conda
+/opt/anaconda3/bin/conda create --name python3-datasci numpy scipy matplotlib pandas seaborn keras statsmodels ipykernel ipympl nodejs jupyterlab
+#/opt/anaconda3/bin/conda create --yes --name python3-datasci anaconda numpy scipy matplotlib pandas seaborn keras tensorflow statsmodels tensorflow-gpu pytorch torchvision cudatoolkit ipykernel ipympl nodejs
 /opt/anaconda3/envs/python3-datasci/bin/python -m ipykernel install --name 'python3-datasci' --display-name "python3-datasci"
 
 # tensorflow 2.1 w/gpu support and full scientific python stack
 #/opt/anaconda3/bin/conda create --yes --name tensorflow2.1-gpu anaconda numpy scipy matplotlib pandas seaborn keras tensorflow statsmodels tensorflow-gpu ipykernel
-#/opt/anaconda3/envs/tensorflow2.1-gpu/bin/python -m ipykernel install --name 'tensorflow2.1-gpu' --display-name "ThensorFlow 2.1 GPU"
+#/opt/anaconda3/envs/tensorflow2.1-gpu/bin/python -m ipykernel install --name 'tensorflow2.1-gpu' --display-name "TensorFlow 2.1 GPU"
 
 # pytorch 1.4 w/gpu support and full scientific python stack
 #/opt/anaconda3/bin/conda create --yes --name pytorch1.5-gpu anaconda anaconda numpy scipy matplotlib pandas seaborn keras tensorflow statsmodels ipykernel pytorch torchvision  cudatoolkit=10.1  -c pytorch 
@@ -71,11 +74,11 @@ conda activate jupyterhub
 /opt/anaconda3/envs/jupyterhub/bin/jupyter lab clean
 /opt/anaconda3/envs/jupyterhub/bin/jupyter lab build
 
-conda activate python3-datasci
-/opt/anaconda3/envs/python3-datasci/bin/jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager
-/opt/anaconda3/envs/python3-datasci/bin/jupyter labextension install --no-build jupyter-matplotlib
-/opt/anaconda3/envs/python3-datasci/bin/jupyter lab clean
-/opt/anaconda3/envs/python3-datasci/bin/jupyter lab build
+#conda activate python3-datasci
+#/opt/anaconda3/envs/python3-datasci/bin/jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager
+#/opt/anaconda3/envs/python3-datasci/bin/jupyter labextension install --no-build jupyter-matplotlib
+#/opt/anaconda3/envs/python3-datasci/bin/jupyter lab clean
+#/opt/anaconda3/envs/python3-datasci/bin/jupyter lab build
 
 
 echo "Anaconda Python3 installed successfully, JupyterHub/JupyterLab server running!"

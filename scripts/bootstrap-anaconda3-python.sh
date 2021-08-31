@@ -2,8 +2,12 @@
 
 # install anaconda python package management system for all users
 cd /vagrant # change to shared vagrant directory to put download into
-wget -c https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-bash Anaconda3-2020.02-Linux-x86_64.sh -b -p /opt/anaconda3
+#wget -c https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+wget --progress=bar:force:noscroll https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh
+
+#bash Anaconda3-2020.02-Linux-x86_64.sh -b -p /opt/anaconda3
+bash Anaconda3-2021.05-Linux-x86_64.sh -b -p /opt/anaconda3
+
 export PATH="/opt/anaconda3/bin:$PATH"
 addgroup conda # group for people who need to use conda
 chgrp -R conda /opt/anaconda3
