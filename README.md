@@ -385,7 +385,7 @@ with a full Anaconda Python3 data science
 stack installed.  The server is mapped to port 8000 of your host machine.
 So if the vagrant box is up and running, you should be able to navigate to
 
-[http://localhost:8000](http://localhost:8000)
+[http://127.0.0.1:8000](http://localhost:8000)
 
 from a web browser to access your system.  
 
