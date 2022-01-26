@@ -45,7 +45,7 @@ ln -s /opt/anaconda3/envs/jupyterhub/etc/systemd/jupyterhub.service /etc/systemd
 # Anaconda3 (full scientific python stack)
 /opt/anaconda3/bin/conda update --yes anaconda
 /opt/anaconda3/bin/conda update --yes conda
-/opt/anaconda3/bin/conda create --yes --name python3-datasci numpy scipy matplotlib pandas seaborn keras statsmodels ipykernel ipympl nodejs jupyterlab
+/opt/anaconda3/bin/conda create --yes --name python3-datasci numpy scipy matplotlib pandas seaborn scikit-learn keras statsmodels ipykernel ipympl nodejs jupyterlab
 #/opt/anaconda3/bin/conda create --yes --name python3-datasci anaconda numpy scipy matplotlib pandas seaborn keras tensorflow statsmodels tensorflow-gpu pytorch torchvision cudatoolkit ipykernel ipympl nodejs
 /opt/anaconda3/envs/python3-datasci/bin/python -m ipykernel install --name 'python3-datasci' --display-name "python3-datasci"
 
